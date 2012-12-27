@@ -115,6 +115,7 @@ class NumberSpeller
         if(!(preg_match('/^\s+$/',$string))){
             $string .= $places;
         }
+        //kind of stupid, but I decided to go RTL, so I have to prepend everything
         $this->string = $string . $this->string;
     }
 
