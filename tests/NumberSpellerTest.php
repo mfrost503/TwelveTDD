@@ -29,7 +29,9 @@ class NumberSpellerTest extends PHPUnit_Framework_TestCase
             array(1100100,'one million one hundred thousand one hundred'),
             array(1013,'one thousand thirteen'),
             array(100000000000, 'one hundred billion'),
-            array(100145,'one hundred thousand one hundred forty five')
+            array(100145,'one hundred thousand one hundred forty five'),
+            array('1,045','one thousand forty five'),
+            array(1000001,'one million one')
         );
     }
 
@@ -42,7 +44,7 @@ class NumberSpellerTest extends PHPUnit_Framework_TestCase
         $ns = new lib\NumberSpeller($number);
         $this->assertEquals($text,$ns->convert());
     }
-    
+
     /**
      *
      * Given a number is provided

@@ -6,10 +6,18 @@ class NumberSpeller
     private $number;
     private $baseNumbers;
     private $string = '';
+    private $places;
     private $isTeen = false;
+
+    /**
+     * @param $number
+     * Setting base numbers with the least amount of number texts
+     * possible to avoid crazy extrapolations
+     * We're also going to cast the number to a string
+     */
     public function __construct($number)
     {
-        $this->number = (string) $number;
+        $this->number = (string) str_replace(',','',$number);
         $this->baseNumbers = array(
             1 => 'one',
             2 => 'two',
@@ -48,6 +56,12 @@ class NumberSpeller
         );
     }
 
+    /**
+     * @return mixed
+     * We're going to start from the right and break the
+     * number into 3 digit place separations (hundreds,thousands,millions,etc)
+     * and process them to generate the text
+     */
     public function convert()
     {
         $separations = $this->getSeparations();
@@ -65,7 +79,8 @@ class NumberSpeller
 
     /**
      * @return float
-     * Returning the number of 3 digit separations
+     * This is going to tell us how many 3 digit
+     * separations we actually have
      */
     public function getSeparations()
     {
@@ -73,11 +88,21 @@ class NumberSpeller
         return ceil($separations);
     }
 
+    /**
+     * @return int
+     * tells us how many digits we have
+     */
     public function numberCount()
     {
         return strlen($this->number);
     }
 
+    /**
+     * @param $separation
+     * @param $placesIndex
+     * Then teen numbers require a little bit of trickery, so on every
+     * separation we need to check if we have a teen number
+     */
     private function processSeparation($separation,$placesIndex)
     {
         $this->isTeen = false;
@@ -91,6 +116,12 @@ class NumberSpeller
         $this->string = $string . $this->string;
     }
 
+    /**
+     * @param $number
+     * @return string
+     * Gets the left-most number of the separation and returns
+     * {\d} hundred if that number is not zero
+     */
     private function processHundreds($number)
     {
         if($number !=0) {
@@ -99,6 +130,13 @@ class NumberSpeller
         return '';
     }
 
+    /**
+     * @param $number
+     * @return string
+     * Needed the 2 right most numbers to accommodate a teen
+     * if it's not a teen or 0 we return the first of the 2 numbers
+     * with a zero appended
+     */
     private function processTens($number)
     {
         if(substr($number,0,1) == '1') {
@@ -113,6 +151,13 @@ class NumberSpeller
         return '';
     }
 
+    /**
+     * @param $number
+     * @return string
+     * If we had a teen in the previous step we don't have
+     * to address this number, otherwise, we're able to just pull
+     * the text for the number.
+     */
     private function processOnes($number)
     {
         if($this->isTeen === true) {
@@ -123,6 +168,11 @@ class NumberSpeller
         }
     }
 
+    /**
+     * In order to get nice clean separations, if we don't have a
+     * factor of three, we're going to pad it with zeros, so 1000 will become
+     * 001000
+     */
     private function padNumber()
     {
         $separations = $this->getSeparations();
