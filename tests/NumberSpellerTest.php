@@ -42,6 +42,7 @@ class NumberSpellerTest extends PHPUnit_Framework_TestCase
         $ns = new lib\NumberSpeller($number);
         $this->assertEquals($text,$ns->convert());
     }
+    
     /**
      *
      * Given a number is provided
