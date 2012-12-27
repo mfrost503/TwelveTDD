@@ -52,7 +52,14 @@ class NumberSpeller
             1 => ' thousand ',
             2 => ' million ',
             3 => ' billion ',
-            4 => ' trillion '
+            4 => ' trillion ',
+            5 => ' quadrillion ',
+            6 => ' quintillion ',
+            7 => ' sextillion ',
+            8 => ' septillion ',
+            9 => ' octillion ',
+            10 => ' nonillion ',
+            11 => ' decillion '
         );
     }
 
