@@ -73,6 +73,7 @@ class NumberSpeller
             $start += -3;
         }
         $string = trim($this->string);
+        // cleaning up some formatting with extra spaces....way easier
         return preg_replace('/\s+/',' ',$string);
 
     }
@@ -110,6 +111,7 @@ class NumberSpeller
         $string .= $this->processTens(substr($separation,1,2)). ' ';
         $string .= $this->processOnes(substr($separation,2,1)). '';
         $places = $this->places[$placesIndex];
+        // if the string is nothing but spaces, there is no value for the separation
         if(!(preg_match('/^\s+$/',$string))){
             $string .= $places;
         }
