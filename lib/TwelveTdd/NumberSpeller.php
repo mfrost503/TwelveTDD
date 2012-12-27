@@ -19,6 +19,7 @@ class NumberSpeller
     {
         $this->number = str_replace(',','',$number);
         $this->baseNumbers = array(
+            0 => '',
             1 => 'one',
             2 => 'two',
             3 => 'three',
@@ -116,7 +117,6 @@ class NumberSpeller
         $this->isTeen = false;
         $string = $this->processHundreds(substr($separation,0,1)) .' ';
         $string .= $this->processTens(substr($separation,1,2)). ' ';
-        $string .= $this->processOnes(substr($separation,2,1)). '';
         $places = $this->places[$placesIndex];
         // if the string is nothing but spaces, there is no value for the separation
         if(!(preg_match('/^\s+$/',$string))){
@@ -149,33 +149,15 @@ class NumberSpeller
      */
     private function processTens($number)
     {
-        if(substr($number,0,1) == '1') {
-            $this->isTeen = true;
+        if(array_key_exists($number,$this->baseNumbers)) {
             return $this->baseNumbers[$number];
         }
 
-        if(substr($number,0,1) != '0'){
-            $index = substr($number,0,1) . '0';
-            return $this->baseNumbers[$index];
-        }
-        return '';
-    }
-
-    /**
-     * @param $number
-     * @return string
-     * If we had a teen in the previous step we don't have
-     * to address this number, otherwise, we're able to just pull
-     * the text for the number.
-     */
-    private function processOnes($number)
-    {
-        if($this->isTeen === true) {
-            return '';
-        }
-        if($number != 0) {
-            return $this->baseNumbers[$number];
-        }
+        $ten = substr($number,0,1);
+        $string = $this->baseNumbers[$ten * 10];
+        $ones = substr($number,1,1);
+        $string .= ' ' . $this->baseNumbers[$ones];
+        return $string;
     }
 
     /**
