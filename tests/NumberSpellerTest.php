@@ -31,7 +31,8 @@ class NumberSpellerTest extends PHPUnit_Framework_TestCase
             array(100000000000, 'one hundred billion'),
             array(100145,'one hundred thousand one hundred forty five'),
             array('1,045','one thousand forty five'),
-            array(1000001,'one million one')
+            array(1000001,'one million one'),
+            array('143,865,030,112,068','one hundred forty three trillion eight hundred sixty five billion thirty million one hundred twelve thousand sixty eight')
         );
     }
 
@@ -57,6 +58,20 @@ class NumberSpellerTest extends PHPUnit_Framework_TestCase
         $ns = new lib\NumberSpeller($number);
         $this->assertEquals($separations,$ns->getSeparations());
         unset($ns);
+    }
+
+    /**
+     * @test
+     * Given that a number is provided
+     * When the numberCount method is called
+     * Then we should get the number of digits provided
+     */
+    public function getCorrectNumberCount()
+    {
+        $ns = new lib\NumberSpeller(120);
+        $this->assertEquals(3,$ns->numberCount());
+        $ns1 = new lib\NumberSpeller(10000123);
+        $this->assertEquals(8,$ns1->numberCount());
     }
 
     /**

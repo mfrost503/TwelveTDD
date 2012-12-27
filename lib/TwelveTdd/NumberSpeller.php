@@ -51,8 +51,8 @@ class NumberSpeller
             0 => '',
             1 => ' thousand ',
             2 => ' million ',
-            3 => 'billion',
-            4 => 'trillion'
+            3 => ' billion ',
+            4 => ' trillion '
         );
     }
 
