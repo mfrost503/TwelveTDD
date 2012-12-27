@@ -17,7 +17,7 @@ class NumberSpeller
      */
     public function __construct($number)
     {
-        $this->number = (string) str_replace(',','',$number);
+        $this->number = str_replace(',','',$number);
         $this->baseNumbers = array(
             1 => 'one',
             2 => 'two',
