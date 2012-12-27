@@ -1,0 +1,4 @@
+<phpunit
+    bootstrap="tests/index.php"
+    colors="true"
+    ></phpunit>
