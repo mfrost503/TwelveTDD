@@ -1,7 +1,8 @@
 <?php
-use \lib\TwelveTdd as lib;
 
-class MineTest extends PHPUnit_Framework_TestCase
+namespace TwelveTdd;
+
+class MineTest extends \PHPUnit_Framework_TestCase
 {
     public function setUp()
     {
@@ -20,8 +21,8 @@ class MineTest extends PHPUnit_Framework_TestCase
      */
     public function GridIsValid()
     {
-        $mine = new lib\Mine(1,8,'....*...');
-        $this->assertInstanceOf('lib\TwelveTdd\Mine',$mine);
+        $mine = new Mine(1,8,'....*...');
+        $this->assertInstanceOf('TwelveTdd\Mine',$mine);
     }
 
     /**
@@ -34,7 +35,7 @@ class MineTest extends PHPUnit_Framework_TestCase
      */
     public function EmptyGridThrowsException()
     {
-        $mine = new lib\Mine(3,5,'');
+        $mine = new Mine(3,5,'');
     }
 
     /**
@@ -47,7 +48,7 @@ class MineTest extends PHPUnit_Framework_TestCase
      */
     public function EmptyArrayGridThrowsException()
     {
-        $mine = new lib\Mine(1,1,array());
+        $mine = new Mine(1,1,array());
     }
 
     /**
@@ -60,7 +61,7 @@ class MineTest extends PHPUnit_Framework_TestCase
      */
     public function IntGridThrowsException()
     {
-        $mine = new lib\Mine(1,1,2);
+        $mine = new Mine(1,1,2);
     }
 
     /**
@@ -73,7 +74,7 @@ class MineTest extends PHPUnit_Framework_TestCase
     public function CheckValidPositions()
     {
         $grid = "...\n...\n...\n";
-        $mine = new lib\Mine(3,3,$grid);
+        $mine = new Mine(3,3,$grid);
         $mine->generateRows();
         $this->assertTrue($mine->isPositionValid(3,1));
         $this->assertTrue($mine->isPositionValid(1,2));
@@ -91,7 +92,7 @@ class MineTest extends PHPUnit_Framework_TestCase
     public function CheckIsMine()
     {
         $grid = "..*\n.*.\n*..";
-        $mine = new lib\Mine(3,3,$grid);
+        $mine = new Mine(3,3,$grid);
         $mine->generateRows();
         $this->assertTrue($mine->isMine(1,2));
         $this->assertTrue($mine->isMine(2,1));
@@ -108,7 +109,7 @@ class MineTest extends PHPUnit_Framework_TestCase
     public function CheckAdjacentMines()
     {
         $grid = "...*.\n.*...\n..*..\n....*\n.....";
-        $mine = new lib\Mine(5,5,$grid);
+        $mine = new Mine(5,5,$grid);
         $mine->generateRows();
         $output = $mine->process();
         $this->assertEquals('112*1',$output[1]);

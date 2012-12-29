@@ -1,7 +1,8 @@
 <?php
-use \lib\TwelveTdd as lib;
 
-class NumberSpellerTest extends PHPUnit_Framework_TestCase
+namespace TwelveTdd;
+
+class NumberSpellerTest extends \PHPUnit_Framework_TestCase
 {
     public function setUp(){}
     public function tearDown(){}
@@ -43,7 +44,7 @@ class NumberSpellerTest extends PHPUnit_Framework_TestCase
      */
     public function testValidNumbers($number, $text)
     {
-        $ns = new lib\NumberSpeller($number);
+        $ns = new NumberSpeller($number);
         $this->assertEquals($text,$ns->convert());
     }
 
@@ -56,7 +57,7 @@ class NumberSpellerTest extends PHPUnit_Framework_TestCase
      */
     public function getThreeDigitSeparations($number,$separations)
     {
-        $ns = new lib\NumberSpeller($number);
+        $ns = new NumberSpeller($number);
         $this->assertEquals($separations,$ns->getSeparations());
         unset($ns);
     }
@@ -69,9 +70,9 @@ class NumberSpellerTest extends PHPUnit_Framework_TestCase
      */
     public function getCorrectNumberCount()
     {
-        $ns = new lib\NumberSpeller(120);
+        $ns = new NumberSpeller(120);
         $this->assertEquals(3,$ns->numberCount());
-        $ns1 = new lib\NumberSpeller(10000123);
+        $ns1 = new NumberSpeller(10000123);
         $this->assertEquals(8,$ns1->numberCount());
     }
 
@@ -83,7 +84,7 @@ class NumberSpellerTest extends PHPUnit_Framework_TestCase
      */
     public function singleDigitNumberReturnsCorrectly()
     {
-        $ns = new lib\NumberSpeller(3);
+        $ns = new NumberSpeller(3);
         $this->assertEquals('three',strtolower($ns->convert()));
     }
 }
