@@ -1,4 +1,9 @@
-<phpunit
-    bootstrap="tests/index.php"
-    colors="true"
-    ></phpunit>
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit 
+    bootstrap="tests/index.php" 
+    colors="true">
+
+    <testsuite name="twelve-tdds">
+        <directory>tests</directory>
+    </testsuite>
+</phpunit>
