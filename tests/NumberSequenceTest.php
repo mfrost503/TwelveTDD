@@ -1,6 +1,6 @@
 <?php
 
-use \lib\TwelveTdd as lib;
+namespace TwelveTdd;
 
 class NumberSequenceTest extends \PHPUnit_Framework_TestCase
 {
@@ -20,7 +20,7 @@ class NumberSequenceTest extends \PHPUnit_Framework_TestCase
      */
     public function addNumberToSequence()
     {
-        $ns = new lib\NumberSequence();
+        $ns = new NumberSequence();
         $ns->add(3);
         $this->assertTrue(in_array(3,$ns->sequence));
     }
@@ -33,7 +33,7 @@ class NumberSequenceTest extends \PHPUnit_Framework_TestCase
      */
     public function getMinimumValue()
     {
-        $ns = new lib\NumberSequence();
+        $ns = new NumberSequence();
         $ns->add(1);
         $ns->add(2);
         $ns->add(3);
@@ -50,7 +50,7 @@ class NumberSequenceTest extends \PHPUnit_Framework_TestCase
      */
     public function getMaximumValue()
     {
-        $ns = new lib\NumberSequence();
+        $ns = new NumberSequence();
         $ns->add(1);
         $ns->add(2);
         $ns->add(3);
@@ -67,7 +67,7 @@ class NumberSequenceTest extends \PHPUnit_Framework_TestCase
      */
     public function getElementCount()
     {
-        $ns = new lib\NumberSequence();
+        $ns = new NumberSequence();
         $ns->add(1);
         $ns->add(2);
         $this->assertEquals(2,$ns->count());
@@ -84,7 +84,7 @@ class NumberSequenceTest extends \PHPUnit_Framework_TestCase
      */
     public function getElementAverage()
     {
-        $ns = new lib\NumberSequence();
+        $ns = new NumberSequence();
         $ns->add(1);
         $ns->add(2);
         $ns->add(3);

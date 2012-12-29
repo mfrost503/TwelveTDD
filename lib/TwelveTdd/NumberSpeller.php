@@ -1,5 +1,5 @@
 <?php
-namespace lib\TwelveTdd;
+namespace TwelveTdd;
 
 class NumberSpeller
 {
