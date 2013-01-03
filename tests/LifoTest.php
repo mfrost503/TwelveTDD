@@ -21,6 +21,7 @@ class LifoTest extends \PHPUnit_Framework_TestCase
      */
     public function StringsAreRetrievedInReverseOrder()
     {
+        $this->lifo->addItem('');
         $this->lifo->addItem("12Tdd");
         $this->lifo->addItem("Matt");
         $this->lifo->addItem("Frost");
@@ -34,4 +35,25 @@ class LifoTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($strings[3],"Frost");
         $this->assertEquals($strings[4],"Matt");
     }
+
+    /**
+     * @test
+     * Given that the stack size is set
+     * When the strings are pulled out
+     * Then any index higher than the stack size should drop off
+     */
+    public function VerifyStackSizeIsMaintained()
+    {
+        $this->lifo->setStackSize(5);
+        $this->lifo->addItem('a');
+        $this->lifo->addItem('b');
+        $this->lifo->addItem('c');
+        $this->lifo->addItem('d');
+        $this->lifo->addItem('e');
+        $this->lifo->addItem('f');
+        $strings = $this->lifo->getItems();
+        $this->assertEquals('f',$strings[0]);
+        $this->assertEquals('b',$strings[4]);
+    }
+
 }
