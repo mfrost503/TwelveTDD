@@ -34,8 +34,10 @@ class FizzBuzz
 
     public function output()
     {
+        $return = '';
         foreach($this->output as $output){
-            print $output . "\n";
+            $return .= $output . "\n";
         }
+        return $return;
     }
 }

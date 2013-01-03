@@ -13,6 +13,15 @@ class FizzBuzzTest extends \PHPUnit_Framework_TestCase
         unset($this->fizzbuzz);
     }
 
+    public function stringProvider()
+    {
+        return array(
+            array("1\n2\nFizz\n4\nBuzz"),
+            array("98\nFizz\nBuzz"),
+            array("FizzBuzz\n31\n32\nFizz")
+        );
+    }
+
     public function numberProvider()
     {
         return array(
@@ -39,5 +48,18 @@ class FizzBuzzTest extends \PHPUnit_Framework_TestCase
     {
         $output = $this->fizzbuzz->process();
         $this->assertEquals($output[$index],$expectedValue);
+    }
+
+    /**
+     * @test
+     * Given that we run fizzbuzz
+     * When we output the data
+     * Then we should see the data separated by new lines
+     * @dataProvider stringProvider
+     */
+    public function VerifyOutputHasNewLines($expected)
+    {
+        $this->fizzbuzz->process();
+        $this->assertContains($expected,$this->fizzbuzz->output());
     }
 }
